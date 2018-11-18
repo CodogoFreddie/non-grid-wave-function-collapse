@@ -8,6 +8,8 @@ import Rules from "./components/Rules";
 const App = () => {
 	const [r, setR] = useState(5);
 	const [n, setN] = useState(3);
+	const [sampleRadius, setSampleRadius] = useState(10);
+	const [paintRadius, setPaintRadius] = useState(20);
 	const [a, setA] = useState(100);
 	const [b, setB] = useState(100);
 	const [numberOfStates, setNumberOfStates] = useState(3);
@@ -41,6 +43,10 @@ const App = () => {
 					setR,
 					n,
 					setN,
+					sampleRadius,
+					setSampleRadius,
+					paintRadius,
+					setPaintRadius,
 					a,
 					setA,
 					b,
@@ -57,10 +63,12 @@ const App = () => {
 					setRules,
 					n,
 					stateColors,
+					sampleRadius,
+					paintRadius,
 				}}
 			/>
 
-			{JSON.stringify({ rules })}
+			{JSON.stringify({ paintRadius, sampleRadius, rules })}
 		</div>
 	);
 };

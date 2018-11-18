@@ -28,6 +28,10 @@ const Config = ({
 	setR,
 	n,
 	setN,
+	sampleRadius,
+	setSampleRadius,
+	paintRadius,
+	setPaintRadius,
 	a,
 	setA,
 	b,
@@ -51,6 +55,20 @@ const Config = ({
 			min={10}
 			max={500}
 			onChange={setA}
+		/>
+		<Slider
+			label="Sample radius"
+			value={sampleRadius}
+			min={2}
+			max={30}
+			onChange={setSampleRadius}
+		/>
+		<Slider
+			label="Paint radius"
+			value={paintRadius}
+			min={2}
+			max={30}
+			onChange={setPaintRadius}
 		/>
 		<Slider
 			label="Samples (b)"
