@@ -30,9 +30,25 @@ const App = () => {
 
 	useEffect(
 		() => {
-			setRules([]);
+			const savedRules =
+				localStorage[`savedRules_${numberOfStates}_${n}`];
+
+			if (savedRules) {
+				setRules(JSON.parse(savedRules));
+			} else {
+				setRules([]);
+			}
 		},
 		[numberOfStates, n],
+	);
+
+	useEffect(
+		() => {
+			localStorage[`savedRules_${numberOfStates}_${n}`] = JSON.stringify(
+				rules,
+			);
+		},
+		[rules, n],
 	);
 
 	return (
@@ -62,6 +78,7 @@ const App = () => {
 					rules,
 					setRules,
 					n,
+					r,
 					stateColors,
 					sampleRadius,
 					paintRadius,
