@@ -43,6 +43,7 @@
     "polished": "^2.3.0",
     "ramda": "^0.25.0",
     "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2"
+    "react-dom": "^16.7.0-alpha.2",
+    "reason-cli": "^3.3.3-macos-1"
   }
 }
