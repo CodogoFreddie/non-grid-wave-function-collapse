@@ -4,6 +4,7 @@ import { adjustHue } from "polished";
 
 import Config from "./components/Config";
 import Rules from "./components/Rules";
+import { createMedium } from "./engine/Main";
 
 const App = () => {
 	const [r, setR] = useState(5);

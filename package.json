@@ -4,6 +4,7 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-preset-freddie-ridell": "0.0.8",
+    "bsb-js": "^1.1.7",
     "eslint": "^5.9.0",
     "eslint-config-react-app": "^3.0.5",
     "eslint-plugin-flowtype": "^3.2.0",
@@ -37,6 +38,7 @@
     "watch": "babel src --out-dir lib --watch"
   },
   "dependencies": {
+    "bs-platform": "^4.0.7",
     "parcel-bundler": "^1.10.3",
     "polished": "^2.3.0",
     "ramda": "^0.25.0",
