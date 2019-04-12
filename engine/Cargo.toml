@@ -5,3 +5,7 @@ authors = ["Freddie Ridell <contact@freddieridell.com>"]
 edition = "2018"
 
 [dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rand = "0.6.5"
+rayon = "1.0.3"

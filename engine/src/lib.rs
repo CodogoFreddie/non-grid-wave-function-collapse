@@ -1,33 +1,20 @@
+extern crate rand;
 
 mod config;
-use config::Config;
+mod point_set;
 
-type Rule = Vec<u8>;
-type RuleSet = Vec<Rule>;
+use crate::config::Config;
+
 type TrainingData = [u8];
 
-struct Point {
-    x: u16,
-    y: u16,
-}
+pub fn generate_rule_set(config: &Config, _training_data: &TrainingData) -> () {
+    // first, generate a set of points within the training data bounds using piosson disk sampling,
+    //
+    // then, use those points to generate a RuleSet
 
-fn generate_rule_centered_on_point(x: u16, y: u16, config: &Config, training_data: &TrainingData) -> Option<Rule> {
-    Some( Rule::new() )
-}
+    let mut point_set = point_set::PointSet::new(&config);
 
-pub fn generate_rule_set(config: &Config, training_data: &TrainingData) -> RuleSet {
-    let mut open_points: Vec<Point> = Vec::new();
-    let mut closed_points: Vec<Point> = Vec::new();
-    let mut rule_set: RuleSet = Vec::new();
+    while let Some(_) = point_set.add_new_point() {
 
-    open_points.push( Point {
-            x: config.source.width / 2,
-            y: config.source.height / 2,
-    });
-
-    while open_points.len() > 0 {
-        
     }
-
-    rule_set
 }
