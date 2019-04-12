@@ -1,15 +1,5 @@
 use serde::{Deserialize, Serialize};
 
-//fn main() {
-//let point = Point { x: 1, y: 2 };
-
-//let serialized = serde_json::to_string(&point).unwrap();
-//println!("serialized = {}", serialized);
-
-//let deserialized: Point = serde_json::from_str(&serialized).unwrap();
-//println!("deserialized = {:?}", deserialized);
-//}
-
 #[derive(Serialize, Deserialize, Debug)]
 pub enum BrushFalloff {
     No,       // plain solid circle
@@ -47,26 +37,19 @@ pub struct RuleConfig {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Color {
-    r: i8,
-    g: i8,
-    b: i8,
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct StateConfig {
     pub color: Color,
-    pub index: u8,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct RenderingConfig {
-    pub rerender_from_scratch_on_state_pop: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
     pub brush: BrushConfig,
-    pub rendering: RenderingConfig,
     pub source: SourceConfig,
     pub states: Vec<StateConfig>,
     pub rules: RuleConfig,

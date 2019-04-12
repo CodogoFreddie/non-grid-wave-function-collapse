@@ -5,25 +5,40 @@ use std::collections::HashSet;
 
 use crate::config::Config;
 
-#[derive(PartialEq, Eq, Hash, Clone)]
+#[derive(PartialEq, Eq, Hash, Clone, Debug)]
 pub struct Point {
     x: u16,
     y: u16,
 }
 
+#[derive(Debug)]
 pub struct PointSet<'a> {
-    open_points: HashSet<Point>,
-    closed_points: HashSet<Point>,
+    pub open_points: HashSet<Point>,
+    pub closed_points: HashSet<Point>,
     config: &'a Config,
 }
 
 impl<'a> PointSet<'a> {
     pub fn new(config: &'a Config) -> PointSet {
-        PointSet {
+        let mut me = PointSet {
             closed_points: HashSet::new(),
             config,
             open_points: HashSet::new(),
-        }
+        };
+
+        me.open_points.insert(
+            me.get_neighbour_of_start_point(&Point {
+                x: config.source.width / 2,
+                y: config.source.height / 2,
+            })
+            .unwrap(),
+        );
+
+        me
+    }
+
+    pub fn points(&self) -> std::collections::hash_set::Iter<'_, Point> {
+        self.closed_points.iter()
     }
 
     /// recursivly searches all open_points and trys to add a new point that is not too close and
@@ -77,22 +92,22 @@ impl<'a> PointSet<'a> {
         );
 
         return Point {
-            x: (start_point.x + ((r * f64::cos(theta)) as u16)),
-            y: (start_point.y + ((r * f64::sin(theta)) as u16)),
+            x: (start_point.x as i16 + ((r * f64::cos(theta)) as i16)) as u16,
+            y: (start_point.y as i16 + ((r * f64::sin(theta)) as i16)) as u16,
         };
     }
 
     fn point_is_inside_bounds(&self, point: &Point) -> bool {
         point.x > 0 + self.config.rules.radius_of_points as u16
-            || point.y > 0 + self.config.rules.radius_of_points as u16
-            || point.x < self.config.source.width + self.config.rules.radius_of_points as u16
-            || point.y < self.config.source.height + self.config.rules.radius_of_points as u16
+            && point.y > 0 + self.config.rules.radius_of_points as u16
+            && point.x < self.config.source.width - self.config.rules.radius_of_points as u16
+            && point.y < self.config.source.height - self.config.rules.radius_of_points as u16
     }
 
     fn point_is_far_to_exising_points(&self, point: &Point) -> bool {
         let comparator = |existing_point: &Point| {
-            let dx = existing_point.x - point.x;
-            let dy = existing_point.y - point.y;
+            let dx = existing_point.x as i16 - point.x as i16;
+            let dy = existing_point.y as i16 - point.y as i16;
 
             let d = f64::sqrt((dx * dx) as f64 + (dy * dy) as f64);
 
@@ -100,6 +115,6 @@ impl<'a> PointSet<'a> {
         };
 
         self.open_points.par_iter().all(&comparator)
+            && self.closed_points.par_iter().all(&comparator)
     }
 }
-

@@ -1,10 +1,9 @@
 [package]
-name = "newfc_engine"
+name = "cli"
 version = "0.1.0"
 authors = ["Freddie Ridell <contact@freddieridell.com>"]
 edition = "2018"
 
 [dependencies]
-serde = { version = "1.0", features = ["derive"] }
-rand = "0.6.5"
-rayon = "1.0.3"
+serde_json = "1.0"
+newfc_engine = { path = "../engine" } 
