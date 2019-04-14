@@ -1,5 +1,4 @@
-use newfc_engine::config::Config;
-use newfc_engine::generate_rule_set;
+use newfc_engine::{Config, FishDiskPoints};
 
 fn open_or_create_config() -> Config {
     use newfc_engine::config::*;
@@ -15,12 +14,12 @@ fn open_or_create_config() -> Config {
                     max_stipple: 6.0,
                     min_stipple: 4.0,
                 },
+                points: PointsConfig {
+                    max_distance: 20.0,
+                    min_distance: 10.0,
+                    attempts: 8,
+                },
                 source: SourceConfig {
-                    sampling: SourceSampleConfig {
-                        max_distance: 10.0,
-                        min_distance: 5.0,
-                        attempts: 256,
-                    },
                     width: 256,
                     height: 256,
                 },
@@ -31,7 +30,7 @@ fn open_or_create_config() -> Config {
                         b: 100,
                     },
                 }],
-                rules: RuleConfig {
+                rules: RulesConfig {
                     radius_of_points: 10.0,
                     number_of_points: 5,
                 },
@@ -56,9 +55,19 @@ fn open_or_create_config() -> Config {
 fn main() {
     let config = open_or_create_config();
 
-    let rule_set = generate_rule_set(&config, &[]);
+    let mut point_set = FishDiskPoints::new(
+        config.source.width,
+        config.source.height,
+        config.points.min_distance,
+        config.points.max_distance,
+        config.points.attempts,
+        );
 
-    for point in rule_set.points() {
-        println!("{:?}", point);
+    //("./manchester-training-data.png");
+
+    while let Some(p) = point_set.add_new_point() {
+        println!("{:?}", p);
     }
+
+    point_set;
 }

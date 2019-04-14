@@ -16,21 +16,20 @@ pub struct BrushConfig {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct SourceSampleConfig {
+pub struct PointsConfig {
     pub max_distance: f64, // the max distance apart that two samples of the input ruleset can be
     pub min_distance: f64, // the min distance apart that two samples of the input ruleset can be
-    pub attempts: u64, // the number of attempts to find a valid neighbour point before a point is considered boxed-in
+    pub attempts: u16, // the number of attempts to find a valid neighbour point before a point is considered boxed-in
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SourceConfig {
-    pub sampling: SourceSampleConfig,
     pub width: u16,
     pub height: u16,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct RuleConfig {
+pub struct RulesConfig {
     pub radius_of_points: f64, // distance between samples and center
     pub number_of_points: u8, // number of equally distant radial samples to take from a central point to decide what rules to apply to it.
 }
@@ -51,6 +50,7 @@ pub struct StateConfig {
 pub struct Config {
     pub brush: BrushConfig,
     pub source: SourceConfig,
+    pub points: PointsConfig,
     pub states: Vec<StateConfig>,
-    pub rules: RuleConfig,
+    pub rules: RulesConfig,
 }
