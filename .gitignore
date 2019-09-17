@@ -18,4 +18,6 @@ lib
 #already existing elements are commented out
 
 /target
-**/*.rs.bk
+**/*.rs.bk/lib
+node_modules
+src/rust/target

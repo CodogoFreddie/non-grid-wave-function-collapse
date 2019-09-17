@@ -1,0 +1,64 @@
+{
+	"name": "non-grid-wave-function-collapse",
+	"version": "1.0.0",
+	"description": "",
+	"main": "lib/index.js",
+	"scripts": {
+		"test": "NODE_ENV=test jest --coverage true src test",
+		"build": "NODE_ENV=production babel src --out-dir lib",
+		"format": "prettier --write src/**/*",
+		"prepushOnly": "npm run format && && npm run test && npm run build",
+		"test_watch": "NODE_ENV=test jest src test --watch --bail --runInBand",
+		"watch": "NODE_ENV=staging babel src --out-dir lib --watch"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/FreddieRidell/non-grid-wave-function-collapse.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/FreddieRidell/non-grid-wave-function-collapse/issues"
+	},
+	"homepage": "https://github.com/FreddieRidell/non-grid-wave-function-collapse#readme",
+	"devDependencies": {
+		"@babel/cli": "^7.6.0",
+		"@babel/core": "^7.6.0",
+		"@freddieridell/babel-preset": "^0.2.0",
+		"babel-eslint": "^10.0.3",
+		"eslint": "^6.4.0",
+		"eslint-config-react-app": "^5.0.1",
+		"eslint-plugin-flowtype": "^4.3.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.14.3",
+		"jest-cli": "^24.9.0",
+		"parcel-bundler": "^1.12.3",
+		"parcel-plugin-wasm.rs": "^1.2.13",
+		"prettier": "^1.18.2",
+		"sass": "^1.22.12"
+	},
+	"babel": {
+		"presets": [
+			"@freddieridell/babel-preset"
+		]
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"files": [
+		null,
+		"/lib",
+		"/main.js"
+	],
+	"prettier": {
+		"tabWidth": 4,
+		"trailingComma": "all",
+		"useTabs": true
+	},
+	"dependencies": {
+		"ramda": "^0.26.1",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0"
+	}
+}
