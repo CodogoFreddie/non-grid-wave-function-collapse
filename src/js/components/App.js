@@ -11,7 +11,13 @@ const App = () => {
 	const [stage, setStage] = React.useState(0);
 
 	const [config, setConfig] = React.useState(
-		JSON.parse(localStorage.getItem("config") || "{}"),
+		JSON.parse(
+			localStorage.getItem("config") ||
+				JSON.stringify({
+					states: {},
+					settings: {},
+				}),
+		),
 	);
 	React.useEffect(() => {
 		localStorage.setItem("config", JSON.stringify(config));
