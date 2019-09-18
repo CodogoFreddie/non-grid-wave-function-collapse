@@ -10,13 +10,16 @@ const ConfigField = ({
 	value,
 	onChange,
 	name,
+	max,
 	map = x => parseInt(x, 10),
 	type = "number",
+	min = "1",
 }) => (
 	<React.Fragment>
 		<label htmlFor={["settings", name].join("-")}>{name}</label>
 		<input
-			min="1"
+			min={min}
+			max={max}
 			id={["settings", name].join("-")}
 			type={type}
 			value={R.path(["settings", name], value)}
@@ -31,14 +34,9 @@ const ConfigField = ({
 const ConfigureModel = ({ value, onChange, incrementStage }) => {
 	const configPreviewCanvas = React.useRef();
 	React.useEffect(() => {
-		console.log(value);
-		console.log(cleanConfig(value));
-
-		console.log(
-			render_settings_preview(
-				cleanConfig(value),
-				configPreviewCanvas.current.getContext("2d"),
-			),
+		render_settings_preview(
+			cleanConfig(value),
+			configPreviewCanvas.current.getContext("2d"),
 		);
 	}, [value]);
 
@@ -104,6 +102,8 @@ const ConfigureModel = ({ value, onChange, incrementStage }) => {
 					<ColorConfig id={key} value={value} onChange={onChange} />
 				))}
 			</fieldset>
+
+			<button onClick={incrementStage}>done</button>
 		</form>
 	);
 };

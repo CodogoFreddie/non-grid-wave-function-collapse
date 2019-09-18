@@ -6,7 +6,7 @@ const ColorConfig = ({ id, value, onChange }) => {
 		<fieldset>
 			<legend>{value.name}</legend>
 
-			<label for={`${id}-name`}>Name</label>
+			<label htmlFor={`${id}-name`}>Name</label>
 			<input
 				id={`${id}-name`}
 				type="text"
@@ -20,7 +20,7 @@ const ColorConfig = ({ id, value, onChange }) => {
 
 			<br />
 
-			<label for={`${id}-color`}>Color</label>
+			<label htmlFor={`${id}-color`}>Color</label>
 			<input
 				id={`${id}-color`}
 				type="color"

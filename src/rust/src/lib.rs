@@ -25,22 +25,13 @@ struct State {
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Settings {
-    #[serde(default = "default_u8")]
     cardinality: u8,
-    #[serde(default = "default_f64", rename = "centerSampleWidth")]
+    #[serde(rename = "centerSampleWidth")]
     center_sample_width: f64,
-    #[serde(default = "default_f64", rename = "outerSampleWidth")]
+    #[serde(rename = "outerSampleWidth")]
     outer_sample_width: f64,
-    #[serde(default = "default_f64", rename = "sampleSpread")]
+    #[serde(rename = "sampleSpread")]
     sample_spread: f64,
-}
-
-fn default_u8() -> u8 {
-    3
-}
-
-fn default_f64() -> f64 {
-    32.0
 }
 
 #[derive(Serialize, Deserialize, Debug)]

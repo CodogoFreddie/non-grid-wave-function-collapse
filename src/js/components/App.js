@@ -15,7 +15,12 @@ const App = () => {
 			localStorage.getItem("config") ||
 				JSON.stringify({
 					states: {},
-					settings: {},
+					settings: {
+						cardinality: 3,
+						centerSampleWidth: 30,
+						outerSampleWidth: 30,
+						sampleSpread: 40,
+					},
 				}),
 		),
 	);
