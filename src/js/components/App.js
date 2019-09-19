@@ -16,6 +16,8 @@ const App = () => {
 				JSON.stringify({
 					states: {},
 					settings: {
+						ruleSamples: 1000,
+						paintSamples: 1000,
 						cardinality: 3,
 						centerSampleWidth: 30,
 						outerSampleWidth: 30,
@@ -43,7 +45,7 @@ const App = () => {
 					/>,
 					<GenerateRules
 						config={config}
-						value={rules}
+						rules={rules}
 						onChange={setRules}
 						incrementStage={incrementStage}
 					/>,

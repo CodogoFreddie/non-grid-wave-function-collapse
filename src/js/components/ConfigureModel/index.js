@@ -68,6 +68,16 @@ const ConfigureModel = ({ value, onChange, incrementStage }) => {
 					onChange={onChange}
 					name="sampleSpread"
 				/>
+				<ConfigField
+					value={value}
+					onChange={onChange}
+					name="ruleSamples"
+				/>
+				<ConfigField
+					value={value}
+					onChange={onChange}
+					name="paintSamples"
+				/>
 
 				<canvas
 					ref={configPreviewCanvas}

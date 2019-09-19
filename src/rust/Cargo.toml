@@ -26,10 +26,12 @@ features = ["serde-serialize"]
 [dependencies.web-sys]
 version = "0.3"
 features = [
+	'console',
   'CanvasRenderingContext2d',
   'Document',
   'Element',
   'HtmlElement',
+  'ImageData',
   'Node',
   'Window',
 ]
